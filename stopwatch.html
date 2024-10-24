@@ -43,9 +43,16 @@
             $buttonStart.on('click', function() {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
+                // When running, the timer should be a different color (example is stoplight green: rgb(51, 165, 50))
+                $(".timer-background").css({"background-color": "rgb(51, 165, 50)"});
             });
             $buttonStop.on('click', function() {
                 clearInterval(interval);
+                // When the pause button is pressed, the timer should be a third color (example is stoplight red: rgb(251, 18, 47))
+                // When the timer reads 00:00 stop should not change the color
+                if (!(tens == 0 && seconds == 0)) {
+                    $(".timer-background").css({"background-color": "rgb(251, 18, 47)"});
+                }
             });
             $buttonReset.on('click', function() {
                 clearInterval(interval);
@@ -53,6 +60,8 @@
                 seconds = "00";
                 $appendTens.html("0" + tens);
                 $appendSeconds.html("0" + seconds);
+                // When the timer is reset, it should revert to the default color (grey).
+                $(".timer-background").css({"background-color": "grey"});
             })
 
             function startTimer() {
@@ -91,7 +100,14 @@
                 "padding": "10px",
                 "border-radius": "5px"
             });
-            
+
+            // Set the timer background color to grey (or a reasonable “stopped” color to match your theme)
+            $(".timer-background").css({
+                "background-color": "grey",
+            });
+
+
+
         });
     </script>
 </head>
