@@ -109,7 +109,7 @@
             let $timer = $("#timer");
             $timer.addClass("timer-background");
             $timer.css({
-                "border": "2px solid black",
+                "border": "2px solid black",  // Initial border before adding the Halloween style
                 "padding": "10px",
                 "border-radius": "5px"
             });
@@ -131,11 +131,34 @@
                 "color": "black",                 // Black text
                 "border": "2px solid black",      // Black border
                 "padding": "10px 20px",           // Comfortable padding
-                "font-size": "14px",              // Slightly smaller font size to match the example
+                "font-size": "14px",              // Font size in pixels
                 "border-radius": "3px",           // Less rounded corners
                 "cursor": "pointer",              // Pointer cursor
             });
+
+            /*
+                Style the stopwatch in Halloween colors:
+                a. Outer border should be orange
+                b. Inner background should be black with some red highlights
+                c. Font/text should be styled in orange and red
+            */
+            $(".timer-background").css({
+                "border": "5px solid orange",  // Orange outer border
+                "background-color": "black",   // Black inner background
+                "color": "orange",             // Orange text color
+                "padding": "15px",             // More padding
+                "font-family": "'Courier New', Courier, monospace",  // Spooky font
+                "font-size": "32px",           // Font size
+                "text-shadow": "2px 2px red"   // Red shadow 
+            });
+            $("h1, h2").css({
+                "color": "orange",  // Orange color for titles
+                "font-family": "'Creepster', cursive",  // Halloween-themed font
+                "text-shadow": "2px 2px red",           // Red shadow
+                "font-size": "40px"                     // Font size
+            });
         });
+
     </script>
 </head>
 
