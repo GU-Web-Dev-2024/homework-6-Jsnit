@@ -10,58 +10,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW6 - JQuery</title>
     <script>
-        window.onload = function () {
+        // Finally, you will want to use the JQuery .ready() function as detailed in the zyBook.
+        $(function() {
+            /*
+                First you will need to modify the 5 JavaScript DOM selection methods (i.e. “element” selections)
+                to use the JQuery $() function with selector strings instead.
+            */
+            let $appendTens = $("#tens")
+            let $appendSeconds = $("#seconds");
+            let $buttonStart = $("#button-start");
+            let $buttonStop = $("#button-stop");
+            let $buttonReset = $("#button-reset");
+
+            /*
+                Next, there are 5 JavaScript variables that you will need to convert to hold JQuery objects. 
+                Rename these 5 variables to match the JQuery best practices naming convention for JQuery 
+                objects. These 5 variables are referenced 10 times in the code, make sure to update their 
+                references to now use the JQuery-named variable. Note that these changes include updating 
+                the event handling code
+            */
             var seconds = "00";
             var tens = "00";
-            var appendTens = document.getElementById("tens")
-            var appendSeconds = document.getElementById("seconds")
-            var buttonStart = document.getElementById('button-start');
-            var buttonStop = document.getElementById('button-stop');
-            var buttonReset = document.getElementById('button-reset');
             var interval;
 
-            buttonStart.onclick = function () {
+            /*
+                There are 7 JavaScript properties accessed and modified in the starter code. You will need to 
+                convert these to use the equivalent JQuery method() instead
+                Pt. 1
+            */
+            $buttonStart.on('click', function() {
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
-            }
-
-            buttonStop.onclick = function () {
+            });
+            $buttonStop.on('click', function() {
                 clearInterval(interval);
-            }
-
-            buttonReset.onclick = function () {
+            });
+            $buttonReset.on('click', function() {
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
-                appendTens.innerHTML = tens;
-                appendSeconds.innerHTML = seconds;
-            }
+                $appendTens.html("0" + tens);
+                $appendSeconds.html("0" + seconds);
+            })
 
             function startTimer() {
                 tens++;
-
+                /*
+                    There are 7 JavaScript properties accessed and modified in the starter code. You will need to 
+                    convert these to use the equivalent JQuery method() instead
+                    Pt. 2
+                */
                 if (tens < 9) {
-                    appendTens.innerHTML = "0" + tens;
+                    $appendTens.html("0" + tens);
                 }
-
                 if (tens > 9) {
-                    appendTens.innerHTML = tens;
-
+                    $appendTens.html(tens);
                 }
-
                 if (tens > 99) {
                     console.log("seconds");
                     seconds++;
-                    appendSeconds.innerHTML = "0" + seconds;
+                    $appendSeconds.html("0" + seconds);
                     tens = 0;
-                    appendTens.innerHTML = "0" + 0;
+                    $appendTens.html("0" + 0);
                 }
-
                 if (seconds > 9) {
-                    appendSeconds.innerHTML = seconds;
+                    $appendSeconds.html(seconds);
                 }
             }
-        }
+        });
     </script>
 </head>
 
