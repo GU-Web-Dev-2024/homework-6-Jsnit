@@ -1,6 +1,8 @@
 <!-- 
-    HW6 Starter code
-     Modified from: https://codepen.io/cathydutton/pen/GBcvo
+    HW6 Starter code: Modified from: https://codepen.io/cathydutton/pen/GBcvo
+    Jake Snitily
+    Web Development
+    10/23/2024
     -->
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +79,19 @@
                     $appendSeconds.html(seconds);
                 }
             }
+            /*
+                Using JQuery (NOT by editing the  HTML element tag), add a class named “timer-background” to that 
+                same paragraph tag ("timer"). 
+                    Style the paragraph container as desired to match your stopwatch theme
+            */
+            let $timer = $("#timer");
+            $timer.addClass("timer-background");
+            $timer.css({
+                "border": "2px solid black",
+                "padding": "10px",
+                "border-radius": "5px"
+            });
+            
         });
     </script>
 </head>
@@ -85,7 +100,7 @@
     <div class="wrapper">
         <h1>Stopwatch</h1>
         <h2>Vanilla JavaScript Stopwatch</h2>
-        <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+        <p id = "timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
         <button id="button-reset">Reset</button>
