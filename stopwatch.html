@@ -31,6 +31,13 @@
             var interval;
 
             /*
+                Function to clear the opacity animation and reset it to 1.0
+            */
+            function resetOpacity() {
+                $(".timer-background").stop(true).css("opacity", 1.0);  // Stop ongoing animations and reset opacity to 1.0
+            }
+
+            /*
                 There are 7 JavaScript properties accessed and modified in the starter code. You will need to 
                 convert these to use the equivalent JQuery method() instead
                 Pt. 1
@@ -41,26 +48,37 @@
                 // When running, the timer should be a different color (example is stoplight green: rgb(51, 165, 50))
                 $(".timer-background").css({"background-color": "rgb(51, 165, 50)"});
             });
+
             $buttonStop.on('click', function() {
                 clearInterval(interval);
-                // When the pause button is pressed, the timer should be a third color (example is stoplight red: rgb(251, 18, 47))
-                // When the timer reads 00:00 stop should not change the color
+                // When the pause button is pressed, reset opacity to 1.0
+                resetOpacity();
+                // Change the color to red when paused
                 if (!(tens == 0 && seconds == 0)) {
                     $(".timer-background").css({"background-color": "rgb(251, 18, 47)"});
                 }
             });
+
             $buttonReset.on('click', function() {
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
                 $appendTens.html("0" + tens);
                 $appendSeconds.html("0" + seconds);
-                // When the timer is reset, it should revert to the default color (grey).
+                // When the timer is reset, reset the opacity to 1.0 and color to grey
                 $(".timer-background").css({"background-color": "grey"});
-            })
+                resetOpacity();
+            });
 
             function startTimer() {
                 tens++;
+
+                /*
+                    Start the opacity animation within the timer function while the timer is running
+                    This will alternate the opacity between 0.8 and 1.0
+                */
+                $(".timer-background").animate({ opacity: 0.8 }, 1000).animate({ opacity: 1.0 }, 1000);
+
                 /*
                     There are 7 JavaScript properties accessed and modified in the starter code. You will need to 
                     convert these to use the equivalent JQuery method() instead
@@ -73,7 +91,6 @@
                     $appendTens.html(tens);
                 }
                 if (tens > 99) {
-                    console.log("seconds");
                     seconds++;
                     $appendSeconds.html("0" + seconds);
                     tens = 0;
@@ -83,6 +100,7 @@
                     $appendSeconds.html(seconds);
                 }
             }
+
             /*
                 Using JQuery (NOT by editing the  HTML element tag), add a class named “timer-background” to that 
                 same paragraph tag ("timer"). 
@@ -116,8 +134,8 @@
                 "font-size": "14px",              // Slightly smaller font size to match the example
                 "border-radius": "3px",           // Less rounded corners
                 "cursor": "pointer",              // Pointer cursor
-             });
-        });  // <-- Missing closing brace added here
+            });
+        });
     </script>
 </head>
 
